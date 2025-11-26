@@ -24,9 +24,9 @@ export const onRequestPost = async (context: any) => {
     
     return new Response("Invalid credentials", { status: 401 });
   } catch (err: any) {
-    //return new Response("Auth Error", { status: 500 });
-   const availableEnv = context.env ? Object.keys(context.env).join(', ') : 'env is null';
+    return new Response("Auth Error", { status: 500 });
+   //const availableEnv = context.env ? Object.keys(context.env).join(', ') : 'env is null';
   
-  return new Response(`Debug Error: APEX_DB is missing. Available vars: [${availableEnv}]. Error detail: ${err.message}`, { status: 500 });
+  //return new Response(`Debug Error: APEX_DB is missing. Available vars: [${availableEnv}]. Error detail: ${err.message}`, { status: 500 });
   }
 }
