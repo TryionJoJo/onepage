@@ -23,7 +23,9 @@ export const onRequestPost = async (context: any) => {
     }
     
     return new Response("Invalid credentials", { status: 401 });
-  } catch (err) {
-    return new Response("Auth Error", { status: 500 });
+  } catch (err: any) {
+    //return new Response("Auth Error", { status: 500 });
+    const errorMessage = err.message || JSON.stringify(err);
+  return new Response(`Debug Error: ${errorMessage}`, { status: 500 });
   }
 }
