@@ -6,11 +6,11 @@ interface Env {
 export const onRequestPost = async (context: any) => {
   try {
     const { username, password } = await context.request.json();
-    
+   const inputPassword = (password || "").normalize('NFKC').trim(); 
     // Get stored password from KV, default to 'admin' if not set
     let storedPassword = await context.env.APEX_DB.get("admin_password") || "admin";
-    storedPassword = storedPassword.normalize('NFKC');
-    if (username === "admin" && password === storedPassword) {
+    const storedPassword = storedPassword.normalize('NFKC');
+    if (username === "admin" && inputPassword === storedPassword) {
       const user = { 
         id: '1', 
         username: '管理员', 
