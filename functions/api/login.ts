@@ -9,7 +9,7 @@ export const onRequestPost = async (context: any) => {
     
     // Get stored password from KV, default to 'admin' if not set
     const storedPassword = await context.env.APEX_DB.get("admin_password") || "admin";
-    
+    storedPassword = storedPassword.normalize('NFKC');
     if (username === "admin" && password === storedPassword) {
       const user = { 
         id: '1', 
